@@ -1,4 +1,6 @@
-# DeepFake Recognition for Celebrities🚀️
+11:49:44.294: [st5188pg16] git -c credential.helper= -c core.quotepath=false -c log.showSignature=false push --progress --porcelain origin refs/heads/master:master
+fatal: unable to access 'https://github.com/WhyCitrus/st5188pg16_deepfake-speech-recognition.git/': Failed to connect to github.com port 443 after 21053 ms: Could not connect to server
+fatal: unable to access 'https://github.com/WhyCitrus/st5188pg16_deepfake-speech-recognition.git/': Failed to connect to github.com port 443 after 21053 ms: Could not connect to server# DeepFake Recognition for Celebrities🚀️
 
 This is the code repository for deep fake audio recognition of st5188 PG16.
 
@@ -151,6 +153,12 @@ Diffusion model partitioning strategy
 6. run mfcc extraction.ipynb to get overall mfcc features for conformer input,you will get a npy folder
 7. run 11labtransformer.ipynb to transform raw mp3 data to wav file
 8. run CNNBiLSTMClassifier&ConformerClassifier&WhisperClassifier.ipynb to train model and complete model evaluation
+9. bash run predict.py to detect target audio file is spoofed or not
+   python predict.py
+   --input /path to target file or dir which you want to predict
+   --model /path to your saved model checkpoint file(.pt) #---note that the parameters of the model should be consistent with the file
+   --csv   /path to save prediction result
+   --threshold /Threshold of positive and negative samples
 
 ## Directory Structure
 
@@ -192,6 +200,10 @@ DeepFake4Celeb/
 │   ├── ConformerClassifier.ipynb  # The complete training code of ConformerClassifier, including the entire pipeline of data loading, enhancement, training, evaluation, and prediction
 │   └── WhisperClassifier.ipynb    # The complete training code of WhisperClassifier, including the entire pipeline of data loading, enhancement, training, evaluation, and prediction
 │
+├── batch_predict/
+│   ├── functions.py                # contains model architecture and data_process funcitons
+│   └── predict.py                  # predict script for any audio u want to detect
+│
 ├── src/
 │   ├── bash setup                # Configure the training environment through environment.yml
 │   └── env info                  # Records the CPU GPU PYTHON version, operating system version and other parameters of the training environment
@@ -200,7 +212,6 @@ DeepFake4Celeb/
 ├── README.md                     # Overall description of the warehouse (project overview, usage, etc.)
 └── .gitignore                    # Git ignore configuration
 ```
-
 
 ## Dataset source
 
@@ -217,4 +228,3 @@ DeepFake4Celeb/
 3. VoxCeleb: A large-scale speaker identification dataset       https://www.robots.ox.ac.uk/~vgg/publications/2017/Nagrani17/nagrani17.pdf
 4. In-the-Wild: Does Audio Deepfake Detection Generalize?       https://arxiv.org/pdf/2203.16263
 5. LJSpeech-1.1: https://paperswithcode.com/dataset/ljspeech
-
